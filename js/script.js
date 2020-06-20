@@ -21,23 +21,23 @@ const   additionalIncomeItem = document.querySelectorAll('.additional_income-ite
         targetAmount = document.querySelector('.target-amount'),
         periodSelect = document.querySelector('.period-select');
 
-        console.log(button1,
-            button2,
-            depositCheck,
-            budgetMonthValue,
-            budgetdayValue,
-            expensesMonthValue,
-            additionalIncomeValue,
-            additionalExpensesValue,
-            incomePeriodValue,
-            targetMonthValue,
-            additionalIncomeItem,
-            start,
-            salaryAmount,
-            incomeTitle,
-            incomeAmount,
-            expensesTitle,
-            expensesAmount,
-            additionalExpensesItem,
-            targetAmount,
-            periodSelect);
+            console.log(button1);
+            console.log(button2);
+            console.log(depositCheck);
+            console.log(budgetMonthValue);
+            console.log(budgetdayValue);
+            console.log(expensesMonthValue);
+            console.log(additionalIncomeValue);
+            console.log(additionalExpensesValue);
+            console.log(incomePeriodValue);
+            console.log(targetMonthValue);
+            console.log(additionalIncomeItem);
+            console.log(start);
+            console.log(salaryAmount);
+            console.log(incomeTitle);
+            console.log(incomeAmount);
+            console.log(expensesTitle);
+            console.log(expensesAmount);
+            console.log(additionalExpensesItem);
+            console.log(targetAmount);
+            console.log(periodSelect);
