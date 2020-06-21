@@ -59,14 +59,6 @@ const appData = {
             incomePeriodValue.value = appData.budgetMonth * periodSelect.value;
         });
 
-        budgetMonthValue.value = '';
-        budgetdayValue.value = '';
-        expensesMonthValue.value = '';
-        additionalExpensesValue.value = '';
-        additionalIncomeValue.value = '';
-        targetMonthValue.value = '';
-        incomePeriodValue.value = '';
-
         budgetMonthValue.value = appData.budgetMonth;
         budgetdayValue.value = appData.budgetDay;
         expensesMonthValue.value = appData.expensesMonth;
@@ -213,7 +205,3 @@ incomeAdd.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('input', appData.calcSavedMoney);
 
 appData.statusData();
-//appData.getInfoDeposit();
-
-// console.log(appData.calcSavedMoney(), appData.persentDeposit, appData.moneyDeposit);
-
