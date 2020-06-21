@@ -1,5 +1,5 @@
-const   button1 = document.getElementsByTagName('button')[0],
-        button2 = document.getElementsByTagName('button')[1],
+const   incomeAdd = document.getElementsByTagName('button')[0],
+        expensesAdd = document.getElementsByTagName('button')[1],
         depositCheck = document.querySelector('#deposit-check');
 
 const   budgetMonthValue = document.querySelector(' .result-total .budget_month-value'),
@@ -21,8 +21,8 @@ const   additionalIncomeItem = document.querySelectorAll('.additional_income-ite
         targetAmount = document.querySelector('.target-amount'),
         periodSelect = document.querySelector('.period-select');
 
-            console.log(button1);
-            console.log(button2);
+            console.log(incomeAdd);
+            console.log(expensesAdd);
             console.log(depositCheck);
             console.log(budgetMonthValue);
             console.log(budgetdayValue);
