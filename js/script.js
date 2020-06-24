@@ -105,6 +105,8 @@ AppData.prototype.cancel = function(){
     incomePeriodValue.value = '';
     targetMonthValue.value = '';
 
+    this.budgetMonth = 0;
+
     start.style.display = 'block';
     cancel.style.display = 'none';
     start.setAttribute('disabled', 'disabled');
@@ -232,7 +234,7 @@ console.log(appData);
 salaryAmount.addEventListener('keyup', appData.validStart);
 salaryAmount.addEventListener('keydown', appData.validStart);
 start.addEventListener('click', appData.start.bind(appData));
-cancel.addEventListener('click', appData.cancel);
+cancel.addEventListener('click', appData.cancel.bind(appData));
 expensesAdd.addEventListener('click', appData.addExpensesBlock);
 incomeAdd.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('input', appData.calcSavedMoney);
