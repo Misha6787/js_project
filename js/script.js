@@ -59,6 +59,7 @@ AppData.prototype.start = function() {
             }  
         });
         start.style.display = 'none';
+        periodSelect.setAttribute('disabled', 'disabled');
         cancel.style.display = 'block';
     }
     closeInpText();
@@ -107,6 +108,7 @@ AppData.prototype.cancel = function(){
 
     this.budgetMonth = 0;
 
+    periodSelect.removeAttribute('disabled', 'disabled');
     start.style.display = 'block';
     cancel.style.display = 'none';
     start.setAttribute('disabled', 'disabled');
@@ -225,17 +227,19 @@ AppData.prototype.validStart = function(){
         start.removeAttribute('disabled');
     }
 };
-
+AppData.prototype.eventList = function(){
+    salaryAmount.addEventListener('keyup', this.validStart.bind(appData));
+    salaryAmount.addEventListener('keydown', this.validStart.bind(appData));
+    start.addEventListener('click', this.start.bind(appData));
+    cancel.addEventListener('click', this.cancel.bind(appData));
+    expensesAdd.addEventListener('click', this.addExpensesBlock.bind(appData));
+    incomeAdd.addEventListener('click', this.addIncomeBlock.bind(appData));
+    periodSelect.addEventListener('input', this.calcSavedMoney.bind(appData));
+};
 
 const appData = new AppData();
+AppData.prototype.eventList();
 
 console.log(appData);
 
-salaryAmount.addEventListener('keyup', appData.validStart);
-salaryAmount.addEventListener('keydown', appData.validStart);
-start.addEventListener('click', appData.start.bind(appData));
-cancel.addEventListener('click', appData.cancel.bind(appData));
-expensesAdd.addEventListener('click', appData.addExpensesBlock);
-incomeAdd.addEventListener('click', appData.addIncomeBlock);
-periodSelect.addEventListener('input', appData.calcSavedMoney);
 
