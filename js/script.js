@@ -58,7 +58,6 @@ const appData = {
             });
             start.style.display = 'none';
             cancel.style.display = 'block';
-            periodSelect.setAttribute('disabled', 'disabled');
             incomeAdd.setAttribute('disabled', 'disabled');
             expensesAdd.setAttribute('disabled', 'disabled');
         }
@@ -136,7 +135,6 @@ const appData = {
         start.setAttribute('disabled', 'disabled');
         incomeAdd.removeAttribute('disabled');
         expensesAdd.removeAttribute('disabled');
-        periodSelect.removeAttribute('disabled', 'disabled');
         console.log(this);
     },
     showResult: function() {
@@ -147,7 +145,6 @@ const appData = {
         additionalExpensesValue.value = this.addExpenses.join(', ');
         additionalIncomeValue.value = this.addIncome.join(', ');
         targetMonthValue.value = this.getTargetMonth();
-        incomePeriodValue.value = this.calcSavedMoney();
     },
     getAddExpenses: function(){
         const addExpenses = additionalExpensesItem.value.split(',');
@@ -232,7 +229,7 @@ const appData = {
     },
     calcSavedMoney: function() {
         periodAmount.textContent = periodSelect.value;
-        return this.budgetMonth * periodSelect.value;
+        incomePeriodValue.value = this.budgetMonth * periodSelect.value;
     },
     validStart: function(){
         if(salaryAmount.value === '') {
