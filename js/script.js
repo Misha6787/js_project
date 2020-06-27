@@ -100,10 +100,16 @@ const appData = {
             incomeItems[1].remove();
             incomeItems[2].remove();
             incomeAdd.style.display = 'block';
+        } else if(incomeItems[1]) {
+            incomeItems[1].remove();
+            incomeAdd.style.display = 'block';
         }
         if(expensesItems[2]){
             expensesItems[1].remove();
             expensesItems[2].remove();
+            expensesAdd.style.display = 'block';
+        } else if(expensesItems[1]){
+            expensesItems[1].remove();
             expensesAdd.style.display = 'block';
         }
 
