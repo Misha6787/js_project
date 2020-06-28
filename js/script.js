@@ -49,7 +49,7 @@ class AppData {
         // console.log(this);
         const inputText = document.querySelectorAll('input[type=text]');
         function closeInpText(){
-        inputText.forEach(function(item){
+        inputText.forEach((item) => {
             if(!item.hasAttribute('disabled')){
                 item.setAttribute('disabled', 'disabled');
             } else {
@@ -60,7 +60,6 @@ class AppData {
         cancel.style.display = 'block';
     }
     closeInpText();
-
         this.getExpenses();
         this.getIncome();
         this.getAddExpenses();
@@ -72,21 +71,21 @@ class AppData {
         const inputText = document.querySelectorAll('input[type=text]');
         
         salaryAmount.value = '';
-        incomeItems.forEach(function(item){
+        incomeItems.forEach((item) => {
             item.querySelector('.income-title').value = '';
             item.querySelector('.income-amount').value = '';
-        });
-        expensesItems.forEach(function(item){
+        }, this);
+        expensesItems.forEach((item) => {
             item.querySelector('.expenses-title').value = '';
             item.querySelector('.expenses-amount').value = '';
-        });
-        inputText.forEach(function(item){
+        }, this);
+        inputText.forEach((item) => {
             if(!item.hasAttribute('disabled')){
                 item.setAttribute('disabled', 'disabled');
             } else {
                 item.removeAttribute('disabled');
             }  
-        });
+        }, this);
         additionalIncomeItem[0].value = '';
         additionalIncomeItem[1].value = '';
         additionalExpensesItem.value = '';
@@ -134,7 +133,7 @@ class AppData {
         start.setAttribute('disabled', 'disabled');
         incomeAdd.removeAttribute('disabled');
         expensesAdd.removeAttribute('disabled');
-        }
+    }
     showResult() {
         budgetMonthValue.value = this.budgetMonth;
         budgetdayValue.value = this.budgetDay;
@@ -147,7 +146,7 @@ class AppData {
     }
     getAddExpenses(){
         const addExpenses = additionalExpensesItem.value.split(',');
-        addExpenses.map(item => {
+        addExpenses.map((item) => {
             if(additionalExpensesItem.value !== ''){
                 item = item.trim();
                 item = item[0].toUpperCase() + item.slice(1);
