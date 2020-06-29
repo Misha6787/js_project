@@ -96,6 +96,9 @@ class AppData {
         targetAmount.value = '';
         periodSelect.value = 1;
         periodAmount.textContent = 1;
+        depositBank.style.display = 'none';
+        depositAmount.style.display = 'none';
+        document.getElementById('deposit-check').checked = false;
 
         if(incomeItems[2]){
             incomeItems[1].remove();
@@ -135,6 +138,8 @@ class AppData {
         this.addIncome = [];
         this.expenses = {};
         this.expensesMonth = 0;
+        this.moneyDeposit = 0;
+        this.persentDeposit = 0;
 
         start.style.display = 'block';
         cancel.style.display = 'none';
@@ -240,16 +245,14 @@ class AppData {
     }
     validStart(){
         salaryAmount.value === '' ? start.setAttribute('disabled', 'disabled') : start.removeAttribute('disabled');
-        if(depositPercent.value > 100 || isNaN(depositPercent.value)) {
-            depositPercent.placeholder='Введи корректное число!';
-            depositPercent.value = '';
-            start.setAttribute('disabled', 'disabled');
-        } else {
-            if(salaryAmount.value !== ''){
+        if(depositCheck.checked){
+            if(depositPercent.value > 100 || isNaN(depositPercent.value)) {
+                start.setAttribute('disabled', 'disabled');
+            } else {
                 start.removeAttribute('disabled');
             }
-            depositPercent.insertAdjacentHTML('afterEnd', '');
-            depositPercent.placeholder='Процент';
+        } else {
+            start.removeAttribute('disabled');
         }
     }
     getInfoDeposit(){
@@ -283,12 +286,24 @@ class AppData {
             depositBank.removeEventListener('change', this.changePercent);
         }
     }
+    checkDeposit(){
+        if(depositCheck.checked){
+            if(isNaN(depositPercent) && depositPercent.value < 100){
+                depositPercent.removeEventListener('input', this.validStart);
+                this.start();
+            } else {
+                alert('Введи коректное число');
+                start.setAttribute('disabled', 'disabled');
+                depositPercent.addEventListener('input', this.validStart);
+            }
+        } else {
+            this.start();
+        }
+    }
     eventList(){
         salaryAmount.addEventListener('keyup', this.validStart.bind(appData));
         salaryAmount.addEventListener('keydown', this.validStart.bind(appData));
-        depositPercent.addEventListener('keyup', this.validStart.bind(appData));
-        depositPercent.addEventListener('keydown', this.validStart.bind(appData));
-        start.addEventListener('click', this.start.bind(appData));
+        start.addEventListener('click', this.checkDeposit.bind(appData));
         cancel.addEventListener('click', this.cancel.bind(appData));
         expensesAdd.addEventListener('click', this.addExpensesBlock.bind(appData));
         incomeAdd.addEventListener('click', this.addIncomeBlock.bind(appData));
@@ -300,5 +315,3 @@ const appData = new AppData();
 AppData.prototype.eventList();
 
 console.log(appData);
-
-
