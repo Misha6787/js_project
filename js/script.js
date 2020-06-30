@@ -246,14 +246,18 @@ class AppData {
         incomePeriodValue.value = this.budgetMonth * periodSelect.value;
     }
     validStart(){
-        salaryAmount.value === '' ? start.setAttribute('disabled', 'disabled') : start.removeAttribute('disabled');
+        if(salaryAmount.value === ''){
+            start.setAttribute('disabled', 'disabled')
+        } else {
+            start.removeAttribute('disabled');
+        }
         if(depositCheck.checked){
             if(depositPercent.value > 100 || !isNumber(depositPercent.value)) {
                 start.setAttribute('disabled', 'disabled');
             } else {
                 start.removeAttribute('disabled');
             }
-        } else {
+        } else if(salaryAmount.value !== ''){
             start.removeAttribute('disabled');
         }
     }
@@ -282,6 +286,7 @@ class AppData {
         } else {
             depositBank.style.display = 'none';
             depositAmount.style.display = 'none';
+            depositPercent.style.display = 'none';
             depositBank.value = '';
             depositAmount.value = '';
             this.deposit = false;
@@ -303,8 +308,7 @@ class AppData {
         }
     }
     eventList(){
-        salaryAmount.addEventListener('keyup', this.validStart.bind(appData));
-        salaryAmount.addEventListener('keydown', this.validStart.bind(appData));
+        salaryAmount.addEventListener('input', this.validStart.bind(appData));
         start.addEventListener('click', this.checkDeposit.bind(appData));
         cancel.addEventListener('click', this.cancel.bind(appData));
         expensesAdd.addEventListener('click', this.addExpensesBlock.bind(appData));
