@@ -62,6 +62,7 @@ class AppData {
         cancel.style.display = 'block';
         incomeAdd.setAttribute('disabled', 'disabled');
         expensesAdd.setAttribute('disabled', 'disabled');
+        depositCheck.setAttribute('disabled', 'disabled');
     }
     closeInpText();
         this.getExpenses();
@@ -146,6 +147,7 @@ class AppData {
         start.setAttribute('disabled', 'disabled');
         incomeAdd.removeAttribute('disabled');
         expensesAdd.removeAttribute('disabled');
+        depositCheck.removeAttribute('disabled');
         }
     showResult() {
         budgetMonthValue.value = this.budgetMonth;
@@ -246,7 +248,7 @@ class AppData {
     validStart(){
         salaryAmount.value === '' ? start.setAttribute('disabled', 'disabled') : start.removeAttribute('disabled');
         if(depositCheck.checked){
-            if(depositPercent.value > 100 || isNaN(depositPercent.value)) {
+            if(depositPercent.value > 100 || !isNumber(depositPercent.value)) {
                 start.setAttribute('disabled', 'disabled');
             } else {
                 start.removeAttribute('disabled');
