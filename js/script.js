@@ -246,11 +246,7 @@ class AppData {
         incomePeriodValue.value = this.budgetMonth * periodSelect.value;
     }
     validStart(){
-        if(salaryAmount.value === ''){
-            start.setAttribute('disabled', 'disabled')
-        } else {
-            start.removeAttribute('disabled');
-        }
+        salaryAmount.value === '' ? start.setAttribute('disabled', 'disabled'):  start.removeAttribute('disabled');
         if(depositCheck.checked){
             if(depositPercent.value > 100 || !isNumber(depositPercent.value)) {
                 start.setAttribute('disabled', 'disabled');
