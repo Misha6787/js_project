@@ -285,8 +285,12 @@ class AppData {
             depositPercent.style.display = 'none';
             depositBank.value = '';
             depositAmount.value = '';
+            depositPercent.removeEventListener('input', this.validStart);
             this.deposit = false;
             depositBank.removeEventListener('change', this.changePercent);
+            if(salaryAmount.value !== ''){
+                start.removeAttribute('disabled');
+            }
         }
     }
     checkDeposit(){
