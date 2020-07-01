@@ -62,7 +62,7 @@ class AppData {
         incomeAdd.setAttribute('disabled', 'disabled');
         expensesAdd.setAttribute('disabled', 'disabled');
         depositCheck.setAttribute('disabled', 'disabled');
-    }
+        }
     closeInpText();
         this.getExpenses();
         this.getIncome();
@@ -246,15 +246,6 @@ class AppData {
     }
     validStart(){
         salaryAmount.value === '' ? start.setAttribute('disabled', 'disabled'):  start.removeAttribute('disabled');
-        if(depositCheck.checked){
-            if(depositPercent.value > 100 || !isNumber(depositPercent.value)) {
-                start.setAttribute('disabled', 'disabled');
-            } else {
-                start.removeAttribute('disabled');
-            }
-        } else if(salaryAmount.value !== ''){
-            start.removeAttribute('disabled');
-        }
     }
     getInfoDeposit(){
         if(this.deposit){
@@ -284,23 +275,16 @@ class AppData {
             depositPercent.style.display = 'none';
             depositBank.value = '';
             depositAmount.value = '';
-            depositPercent.removeEventListener('input', this.validStart);
             this.deposit = false;
             depositBank.removeEventListener('change', this.changePercent);
-            if(salaryAmount.value !== ''){
-                start.removeAttribute('disabled');
-            }
         }
     }
     checkDeposit(){
         if(depositCheck.checked){
             if(isNaN(depositPercent) && depositPercent.value < 100){
-                depositPercent.removeEventListener('input', this.validStart);
                 this.start();
             } else {
                 alert('Введи коректное число');
-                start.setAttribute('disabled', 'disabled');
-                depositPercent.addEventListener('input', this.validStart);
             }
         } else {
             this.start();
