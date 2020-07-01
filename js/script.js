@@ -248,6 +248,9 @@ class AppData {
     }
     validStart(){
         salaryAmount.value === '' ? start.setAttribute('disabled', 'disabled'):  start.removeAttribute('disabled');
+        if(deposit.querySelector('.valText')){
+            deposit.querySelector('.valText').remove();
+        } 
     }
     validDeposit(){
         if(depositCheck.checked){
@@ -257,8 +260,19 @@ class AppData {
             } else if(isNumber(depositPercent.value) || depositPercent.value < 100){
                 if(salaryAmount.value === ''){
                     start.setAttribute('disabled', 'disabled');
+                    const validText = document.createElement('span'); 
+                    validText.classList.add('valText')
+                    validText.style.color = 'red'; 
+                    validText.style.marginLeft = '16px'; 
+                    validText.textContent = 'Введите данные в "Месячный доход"'; 
+                    if(!deposit.querySelector('.valText')){
+                        depositBank.insertAdjacentElement('afterend', validText);
+                    }
                 } else {
                     start.removeAttribute('disabled', 'disabled');
+                    if(deposit.querySelector('.valText')){
+                        deposit.querySelector('.valText').remove();
+                    }
                 }
                 depositPercent.style.border = 'solid 1px #ff7f63';
             }
