@@ -261,7 +261,7 @@ class AppData {
                 if(salaryAmount.value === ''){
                     start.setAttribute('disabled', 'disabled');
                     const validText = document.createElement('span'); 
-                    validText.classList.add('valText')
+                    validText.classList.add('valText');
                     validText.style.color = 'red'; 
                     validText.style.marginLeft = '16px'; 
                     validText.textContent = 'Введите данные в "Месячный доход"'; 
@@ -304,6 +304,11 @@ class AppData {
             depositBank.style.display = 'none';
             depositAmount.style.display = 'none';
             depositPercent.style.display = 'none';
+            if(salaryAmount === ''){
+                start.setAttribute('disabled', 'disabled');
+            } else {
+                start.removeAttribute('disabled');
+            }
             depositBank.value = '';
             depositAmount.value = '';
             this.deposit = false;
