@@ -27,7 +27,8 @@ const   additionalIncomeItem = document.querySelectorAll('.additional_income-ite
         additionalExpensesItem = document.querySelector('.additional_expenses-item'),
         targetAmount = document.querySelector('.target-amount'),
         periodSelect = document.querySelector('.period-select'),
-        periodAmount = document.querySelector('.period-amount');
+        periodAmount = document.querySelector('.period-amount'),
+        deposit = document.querySelector('.deposit');
 
 const isNumber = (n) => !isNaN(parseFloat(n)) && isFinite(n);
 
@@ -49,6 +50,7 @@ class AppData {
     start() {
         this.budget = +salaryAmount.value;
         const inputText = document.querySelectorAll('input[type=text]');
+        depositPercent.style.border = 'solid 1px #ff7f63';
         function closeInpText(){
         inputText.forEach(function(item){
             if(!item.hasAttribute('disabled')){
@@ -247,6 +249,21 @@ class AppData {
     validStart(){
         salaryAmount.value === '' ? start.setAttribute('disabled', 'disabled'):  start.removeAttribute('disabled');
     }
+    validDeposit(){
+        if(depositCheck.checked){
+            if(depositPercent.value > 100 || !isNumber(depositPercent.value)){
+                start.setAttribute('disabled', 'disabled');
+                depositPercent.style.border = 'solid 1px red';
+            } else if(isNumber(depositPercent.value) || depositPercent.value < 100){
+                if(salaryAmount.value === ''){
+                    start.setAttribute('disabled', 'disabled');
+                } else {
+                    start.removeAttribute('disabled', 'disabled');
+                }
+                depositPercent.style.border = 'solid 1px #ff7f63';
+            }
+        }
+    }
     getInfoDeposit(){
         if(this.deposit){
             this.persentDeposit = depositPercent.value;
@@ -284,7 +301,7 @@ class AppData {
             if(isNaN(depositPercent) && depositPercent.value < 100){
                 this.start();
             } else {
-                alert('Введи коректное число');
+                depositPercent.style.border = 'solid 1px red';
             }
         } else {
             this.start();
@@ -298,6 +315,7 @@ class AppData {
         incomeAdd.addEventListener('click', this.addIncomeBlock.bind(appData));
         periodSelect.addEventListener('input', this.calcSavedMoney.bind(appData));
         depositCheck.addEventListener('change', this.depositHandler.bind(appData));
+        depositPercent.addEventListener('input', this.validDeposit.bind(appData));
     }
 }
 const appData = new AppData();
