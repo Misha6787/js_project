@@ -48,7 +48,6 @@ class AppData {
     }
     start() {
         this.budget = +salaryAmount.value;
-        // console.log(this);
         const inputText = document.querySelectorAll('input[type=text]');
         function closeInpText(){
         inputText.forEach(function(item){
@@ -148,7 +147,7 @@ class AppData {
         incomeAdd.removeAttribute('disabled');
         expensesAdd.removeAttribute('disabled');
         depositCheck.removeAttribute('disabled');
-        }
+    }
     showResult() {
         budgetMonthValue.value = this.budgetMonth;
         budgetdayValue.value = this.budgetDay;
