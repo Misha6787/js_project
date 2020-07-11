@@ -98,11 +98,14 @@ const appData = {
     },
     addIncomeBlock: function(){
         const cloneGetIncome = incomeItems[0].cloneNode(true);
+        cloneGetIncome.querySelector('.income-title').value = '';
+        cloneGetIncome.querySelector('.income-amount').value = '';
         incomeItems[0].parentNode.insertBefore(cloneGetIncome, incomeAdd);
         incomeItems = document.querySelectorAll('.income-items');
         if(incomeItems.length === 3) {
             incomeAdd.style.display = 'none';
         }
+        appData.validNameAndAmount();
     },
     getAddIncome: function(){
         additionalIncomeItem.forEach(function(item){
@@ -114,11 +117,14 @@ const appData = {
     },
     addExpensesBlock: function(){
         const cloneExpensesItem = expensesItems[0].cloneNode(true);
+        cloneExpensesItem.querySelector('.expenses-title').value = '';
+        cloneExpensesItem.querySelector('.expenses-amount').value = '';
         expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesAdd);
         expensesItems = document.querySelectorAll('.expenses-items');
         if(expensesItems.length === 3) {
             expensesAdd.style.display = 'none';
         }
+        appData.validNameAndAmount();
     },
     getExpenses: function() {
         expensesItems.forEach(function(item){
@@ -191,6 +197,31 @@ const appData = {
     calcSavedMoney: function() {
         periodAmount.textContent = periodSelect.value;
         return appData.budgetMonth * periodSelect.value;
+    },
+    validNameAndAmount: function() {
+        const placeHolderName = document.querySelectorAll('[placeholder="Наименование"]');
+        const placeHolderAmount = document.querySelectorAll('[placeholder="Сумма"]');
+
+        placeHolderName.forEach(function(item) {
+            item.addEventListener('keyup', function() {
+                if (!item.value.match(/^[а-яА-ЯёЁ0-9]/)) {
+                    item.value = '';
+                    item.style.border = '1px solid red';
+                } else if (item.value !== '') {
+                    item.style.border = '1px solid #ff7f63';
+                }
+            });
+        });
+        placeHolderAmount.forEach(function(item) {
+            item.addEventListener('keyup', function() {
+                if (item.value.match(/\D/g)) {
+                    item.value = '';
+                    item.style.border = '1px solid red';
+                } else if (item.value !== '') {
+                    item.style.border = '1px solid #ff7f63';
+                }
+            });
+        });
     }
 };
 function validStart(){
@@ -200,6 +231,7 @@ function validStart(){
         start.removeAttribute('disabled');
     }
 }
+appData.validNameAndAmount();
 
 salaryAmount.addEventListener('keyup', validStart);
 salaryAmount.addEventListener('keydown', validStart);
