@@ -44,6 +44,8 @@ class AppData {
         this.expensesMonth = 0;
     }
     start() {
+        incomeItems = document.querySelectorAll('.income-items');
+        expensesItems = document.querySelectorAll('.expenses-items');
         this.budget = +salaryAmount.value;
 
         const inputText = document.querySelectorAll('input[type=text]');
@@ -154,21 +156,15 @@ class AppData {
         additionalExpensesItem.forEach(count);
     }
     getExpIncBlock(event) {
-        const target = event.target;
-        if (target.classList.contains('expenses_add')) {
-            const cloneExpensesItem = expensesItems[0].cloneNode(true);
-            expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesAdd);
-            expensesItems = document.querySelectorAll('.expenses-items');
-            if(expensesItems.length === 3) {
-                expensesAdd.style.display = 'none';
-            }
-        } else if (target.classList.contains('income_add')) {
-            const cloneGetIncome = incomeItems[0].cloneNode(true);
-            incomeItems[0].parentNode.insertBefore(cloneGetIncome, incomeAdd);
-            incomeItems = document.querySelectorAll('.income-items');
-            if(incomeItems.length === 3) {
-                incomeAdd.style.display = 'none';
-            }
+        const startStr = event.target.className.split(' ')[1].split('_')[0];
+        let itemStr = document.querySelectorAll(`.${startStr}-items`);
+        const addStr = document.querySelector(`.${startStr}_add`);
+
+        const cloneExpIncItem = itemStr[0].cloneNode(true);
+        itemStr[0].parentNode.insertBefore(cloneExpIncItem, addStr);
+        itemStr = document.querySelectorAll(`.${startStr}-items`);
+        if(itemStr.length === 3) {
+            addStr.style.display = 'none';
         }
     }
     getExpInc() {
