@@ -204,7 +204,7 @@ const appData = {
 
         placeHolderName.forEach(function(item) {
             item.addEventListener('keyup', function() {
-                if (!item.value.match(/^[а-яА-ЯёЁ0-9]/)) {
+                if (!item.value.match(/^[?!,.а-яА-ЯёЁ\s]+$/)) {
                     item.value = '';
                     item.style.border = '1px solid red';
                 } else if (item.value !== '') {
