@@ -205,7 +205,7 @@ const appData = {
         placeHolderName.forEach(function(item) {
             item.addEventListener('keyup', function() {
                 if (!item.value.match(/^[?!,.а-яА-ЯёЁ\s]+$/)) {
-                    item.value = '';
+                    item.value = item.value.replace(/[a-zA-Z0-9\s]+/, '');
                     item.style.border = '1px solid red';
                 } else if (item.value !== '') {
                     item.style.border = '1px solid #ff7f63';
@@ -215,7 +215,7 @@ const appData = {
         placeHolderAmount.forEach(function(item) {
             item.addEventListener('keyup', function() {
                 if (item.value.match(/\D/g)) {
-                    item.value = '';
+                    item.value = item.value.replace(/\D/g, '');
                     item.style.border = '1px solid red';
                 } else if (item.value !== '') {
                     item.style.border = '1px solid #ff7f63';
